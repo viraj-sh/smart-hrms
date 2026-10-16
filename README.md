@@ -29,3 +29,5 @@ A web application for managing employee records, attendance, leave requests, dep
 - [ ] Synthetic demo employee data
 
 **Status:** In Development
+
+## if need to go this page for the login of django rest framework http://127.0.0.1:8000/api/auth/login
