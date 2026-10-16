@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from apps.accounts.views import CustomTokenObtainPairView, CustomTokenRefreshView, test_auth_endpoint
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # JWT Authentication Endpoints
+    path('api/auth/login', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/refresh', CustomTokenRefreshView.as_view(), name='token_refresh'),
+    
+    # Test Authorization Endpoint
+    path('api/auth/test', test_auth_endpoint, name='test_auth'),
 ]
