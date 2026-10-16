@@ -22,10 +22,9 @@ from apps.accounts.views import CustomTokenObtainPairView, test_auth_endpoint
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    # JWT Authentication Endpoints
-    path('api/auth/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    
     # Test Authorization Endpoint
     path('api/auth/test/', test_auth_endpoint, name='test_auth'),
+    path('api/auth/login', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/test', test_auth_endpoint, name='test_auth'),
 ]

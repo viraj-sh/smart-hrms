@@ -6,13 +6,22 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 # 1. Custom JWT Payload[cite: 13]
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-        # Add custom claims
-        token['email'] = user.email
-        token['role'] = user.role
-        return token
+    def validate(self, attrs):
+        # Call the parent method to get the default tokens
+        data = super().validate(attrs)
+        
+        # Get the refresh token and access token objects
+        refresh = self.get_token(self.user)
+        access_token = refresh.access_token
+        
+        # Add custom claims ONLY to the access token
+        access_token['email'] = self.user.email
+        access_token['role'] = self.user.role
+        
+        # Update the access token string in the response data
+        data['access'] = str(access_token)
+        
+        return data
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
