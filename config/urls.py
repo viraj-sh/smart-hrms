@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.accounts.views import CustomTokenObtainPairView, CustomTokenRefreshView, test_auth_endpoint
+from apps.accounts.views import (
+    CustomTokenObtainPairView, 
+    CustomTokenRefreshView, 
+    test_auth_endpoint,
+    test_admin_access,
+    test_hr_access,
+    test_admin_or_hr_access
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +34,9 @@ urlpatterns = [
     
     # Test Authorization Endpoint
     path('api/auth/test', test_auth_endpoint, name='test_auth'),
+    
+    # Role-based Test Endpoints
+    path('api/auth/test-admin', test_admin_access, name='test_admin'),
+    path('api/auth/test-hr', test_hr_access, name='test_hr'),
+    path('api/auth/test-admin-hr', test_admin_or_hr_access, name='test_admin_or_hr'),
 ]
