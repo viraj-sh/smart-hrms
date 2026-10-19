@@ -1,0 +1,88 @@
+
+{% extends "accounts/base_dashboard.html" %}
+
+{% block title %}Admin Dashboard | Smart HRMS{% endblock %}
+{% block eyebrow %}Administration / Overview{% endblock %}
+{% block heading %}Admin Dashboard{% endblock %}
+
+{% block navigation %}
+<a class="nav-link active" href="{% url 'admin_dashboard' %}">
+    <span class="nav-icon">▦</span> Overview
+</a>
+<a class="nav-link" href="#employees">
+    <span class="nav-icon">♙</span> Employees
+</a>
+<a class="nav-link" href="#hr-management">
+    <span class="nav-icon">♧</span> HR Management
+</a>
+<a class="nav-link" href="#reports">
+    <span class="nav-icon">▤</span> Reports
+</a>
+<a class="nav-link" href="#settings">
+    <span class="nav-icon">⚙</span> Settings
+</a>
+{% endblock %}
+
+{% block content %}
+<section class="welcome">
+    <div class="eyebrow">SYSTEM OVERVIEW</div>
+    <h2>Welcome back, Administrator 👋</h2>
+    <p>Manage your workforce and oversee your organization's HR operations.</p>
+</section>
+
+<div class="section-heading">
+    <h2>Organization overview</h2>
+    <span>Live data will be connected later</span>
+</div>
+
+<section class="stats">
+    <article class="stat-card">
+        <div class="stat-label">Total Employees</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Workforce overview</div>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-label">HR Team</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">HR accounts</div>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-label">System Status</div>
+        <div class="stat-value" style="font-size: 22px;">Active</div>
+        <div class="stat-note">Dashboard available</div>
+    </article>
+</section>
+
+<div class="section-heading">
+    <h2>Management tools</h2>
+    <span>Administrator workspace</span>
+</div>
+
+<section class="content-grid">
+    <article class="content-card" id="employees">
+        <h2>Employee Management</h2>
+        <p>Manage employee records, profiles, and workforce information.</p>
+        <a class="action-link" href="#employees">Employee tools →</a>
+    </article>
+
+    <article class="content-card" id="hr-management">
+        <h2>HR Management</h2>
+        <p>Coordinate HR operations and manage role-based access.</p>
+        <a class="action-link" href="#hr-management">HR tools →</a>
+    </article>
+
+    <article class="content-card" id="reports">
+        <h2>Reports & Analytics</h2>
+        <p>Review workforce reports and organization-level insights.</p>
+        <a class="action-link" href="#reports">View reports →</a>
+    </article>
+
+    <article class="content-card" id="settings">
+        <h2>System Settings</h2>
+        <p>Manage system configuration and administrative settings.</p>
+        <a class="action-link" href="#settings">System settings →</a>
+    </article>
+</section>
+{% endblock %}

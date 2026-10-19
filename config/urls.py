@@ -14,8 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.contrib.auth import views as auth_views
 from apps.accounts.views import (
     CustomTokenObtainPairView, 
     CustomTokenRefreshView, 
@@ -39,4 +41,20 @@ urlpatterns = [
     path('api/auth/test-admin', test_admin_access, name='test_admin'),
     path('api/auth/test-hr', test_hr_access, name='test_hr'),
     path('api/auth/test-admin-hr', test_admin_or_hr_access, name='test_admin_or_hr'),
+
+    # Include dashboard URLs
+    path("dashboard/", include("apps.accounts.dashboard_urls")),
+
+    path(
+    "accounts/login/",
+    auth_views.LoginView.as_view(
+        template_name="accounts/login.html"
+    ),
+    name="login",
+),
+path(
+    "accounts/logout/",
+    auth_views.LogoutView.as_view(),
+    name="logout",
+),
 ]

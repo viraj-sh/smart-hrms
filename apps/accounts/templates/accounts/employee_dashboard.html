@@ -1,0 +1,97 @@
+
+{% extends "accounts/base_dashboard.html" %}
+
+{% block title %}My Dashboard | Smart HRMS{% endblock %}
+{% block eyebrow %}Employee Portal / Overview{% endblock %}
+{% block heading %}My Dashboard{% endblock %}
+
+{% block navigation %}
+<a class="nav-link active" href="{% url 'employee_dashboard' %}">
+    <span class="nav-icon">▦</span> Overview
+</a>
+<a class="nav-link" href="#profile">
+    <span class="nav-icon">♙</span> My Profile
+</a>
+<a class="nav-link" href="#attendance">
+    <span class="nav-icon">◷</span> My Attendance
+</a>
+<a class="nav-link" href="#leaves">
+    <span class="nav-icon">▤</span> My Leaves
+</a>
+<a class="nav-link" href="#payslips">
+    <span class="nav-icon">₹</span> Payslips
+</a>
+<a class="nav-link" href="#help">
+    <span class="nav-icon">?</span> Help & Support
+</a>
+{% endblock %}
+
+{% block content %}
+<section class="welcome">
+    <div class="eyebrow">YOUR WORKSPACE</div>
+    <h2>Welcome back! 👋</h2>
+    <p>Here's your personal workspace for attendance, leave, and payroll information.</p>
+</section>
+
+<div class="section-heading">
+    <h2>Your overview</h2>
+    <span>Personal HR summary</span>
+</div>
+
+<section class="stats">
+    <article class="stat-card" id="attendance">
+        <div class="stat-label">Attendance</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Your attendance summary</div>
+    </article>
+
+    <article class="stat-card" id="leaves">
+        <div class="stat-label">Leave Balance</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Available leave information</div>
+    </article>
+
+    <article class="stat-card" id="payslips">
+        <div class="stat-label">Latest Payslip</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Payroll information</div>
+    </article>
+</section>
+
+<div class="section-heading">
+    <h2>My services</h2>
+    <span>Quick access</span>
+</div>
+
+<section class="content-grid">
+    <article class="content-card" id="profile">
+        <h2>My Profile</h2>
+        <p>View your account and personal employee information.</p>
+        <a class="action-link" href="#profile">View profile →</a>
+    </article>
+
+    <article class="content-card">
+        <h2>Attendance Records</h2>
+        <p>Keep track of your attendance information and workdays.</p>
+        <a class="action-link" href="#attendance">View attendance →</a>
+    </article>
+
+    <article class="content-card">
+        <h2>Leave Management</h2>
+        <p>Review your leave information and access leave services.</p>
+        <a class="action-link" href="#leaves">View leaves →</a>
+    </article>
+
+    <article class="content-card">
+        <h2>Salary & Payslips</h2>
+        <p>Access your salary information and payslip services.</p>
+        <a class="action-link" href="#payslips">View payslips →</a>
+    </article>
+
+    <article class="content-card" id="help">
+        <h2>Help & Support</h2>
+        <p>Find support for questions about your HR services.</p>
+        <a class="action-link" href="#help">Support options →</a>
+    </article>
+</section>
+{% endblock %}
