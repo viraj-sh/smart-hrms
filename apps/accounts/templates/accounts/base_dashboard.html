@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Smart HRMS{% endblock %}</title>
+
+    <style>
+        :root {
+            --bg: #0b1020;
+            --sidebar: #101729;
+            --panel: #151e32;
+            --panel-hover: #1b2740;
+            --border: #27334b;
+            --text: #edf2ff;
+            --muted: #95a3bc;
+            --accent: #8b7cff;
+            --accent-soft: #272448;
+            --green: #4dd4a3;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            padding: 28px 18px;
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 10px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #8b7cff, #5c7cfa);
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .brand-name { font-size: 17px; font-weight: 750; }
+        .brand-sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+        .nav-label {
+            margin: 28px 10px 12px;
+            color: #74829e;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.7px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 10px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: background .2s, color .2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background: var(--accent-soft);
+        }
+
+        .nav-link.active {
+            box-shadow: inset 3px 0 var(--accent);
+        }
+
+        .nav-icon { width: 20px; text-align: center; }
+
+        .sidebar-bottom {
+            margin-top: 35px;
+            padding: 16px 10px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .main {
+            flex: 1;
+            min-width: 0;
+            padding: 30px 36px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            font-size: 10px;
+            font-weight: 800;
+            margin-bottom: 9px;
+        }
+
+        h1 { font-size: clamp(25px, 3vw, 34px); margin: 0; letter-spacing: -1px; }
+        h2 { font-size: 17px; margin: 0; }
+        p { color: var(--muted); line-height: 1.6; }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: var(--panel);
+        }
+
+        .avatar {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            color: #c7c0ff;
+            font-weight: 800;
+        }
+
+        .profile-name { font-size: 12px; font-weight: 700; }
+        .profile-role { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+        .welcome {
+            padding: 26px;
+            margin-bottom: 26px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background:
+                radial-gradient(ellipse at 90% 10%, #332b63 0%, transparent 42%),
+                linear-gradient(120deg, #19243c, #151b30);
+        }
+
+        .welcome p { margin-bottom: 0; }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 30px 0 16px;
+        }
+
+        .section-heading span { color: var(--muted); font-size: 12px; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .stat-card, .content-card {
+            min-width: 0;
+            padding: 21px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--panel);
+        }
+
+        .stat-label { color: var(--muted); font-size: 12px; }
+        .stat-value { font-size: 28px; font-weight: 750; margin: 17px 0 8px; }
+        .stat-note { color: var(--green); font-size: 11px; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .content-card p { font-size: 13px; margin-bottom: 0; }
+
+        .action-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #b9b0ff;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .action-link:hover { color: white; }
+
+        .footer {
+            margin-top: 35px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            color: #74829e;
+            font-size: 11px;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 205px; }
+            .main { padding: 24px 20px; }
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 620px) {
+            .app { display: block; }
+            .sidebar { width: 100%; padding: 16px; }
+            .brand { padding-bottom: 16px; }
+            .nav-label { margin-top: 18px; }
+            .sidebar-bottom { margin-top: 15px; }
+            .main { padding: 22px 16px; }
+            .topbar { align-items: flex-start; flex-direction: column; }
+            .stats, .content-grid { grid-template-columns: 1fr; }
+            .welcome { padding: 20px; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">H</div>
+            <div>
+                <div class="brand-name">Smart HRMS</div>
+                <div class="brand-sub">PEOPLE · OPERATIONS</div>
+            </div>
+        </div>
+
+        <div class="nav-label">WORKSPACE</div>
+
+        {% block navigation %}{% endblock %}
+
+        <div class="sidebar-bottom">
+            <div>Smart HRMS</div>
+            <div style="margin-top: 6px;">People first. Always.</div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">{% block eyebrow %}Workspace{% endblock %}</div>
+                <h1>{% block heading %}Dashboard{% endblock %}</h1>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">{{ request.user.email|first|upper }}</div>
+                <div>
+                    <div class="profile-name">{{ request.user.email }}</div>
+                    <div class="profile-role">{{ request.user.role }}</div>
+                </div>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <footer class="footer">
+            © {% now "Y" %} Smart HRMS · Human Resource Management System
+        </footer>
+    </main>
+</div>
+</body>
+</html>

@@ -119,10 +119,17 @@ REST_FRAMEWORK = {
     )
 }
 
+
 # SimpleJWT Configuration
 from datetime import timedelta
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
 }
+
+# Browser authentication settings
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/dashboard/employee/"
+LOGOUT_REDIRECT_URL = "/accounts/login/"

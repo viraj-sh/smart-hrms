@@ -1,0 +1,97 @@
+
+{% extends "accounts/base_dashboard.html" %}
+
+{% block title %}HR Dashboard | Smart HRMS{% endblock %}
+{% block eyebrow %}Human Resources / Overview{% endblock %}
+{% block heading %}HR Dashboard{% endblock %}
+
+{% block navigation %}
+<a class="nav-link active" href="{% url 'hr_dashboard' %}">
+    <span class="nav-icon">▦</span> Overview
+</a>
+<a class="nav-link" href="#employees">
+    <span class="nav-icon">♙</span> Employee Directory
+</a>
+<a class="nav-link" href="#attendance">
+    <span class="nav-icon">◷</span> Attendance
+</a>
+<a class="nav-link" href="#leave-requests">
+    <span class="nav-icon">▤</span> Leave Requests
+</a>
+<a class="nav-link" href="#payroll">
+    <span class="nav-icon">₹</span> Payroll
+</a>
+<a class="nav-link" href="#reports">
+    <span class="nav-icon">▧</span> HR Reports
+</a>
+{% endblock %}
+
+{% block content %}
+<section class="welcome">
+    <div class="eyebrow">HR OPERATIONS</div>
+    <h2>Welcome to your workspace 👋</h2>
+    <p>Coordinate employee services, attendance, leave requests, and HR operations.</p>
+</section>
+
+<div class="section-heading">
+    <h2>HR overview</h2>
+    <span>Live data will be connected later</span>
+</div>
+
+<section class="stats">
+    <article class="stat-card">
+        <div class="stat-label">Total Employees</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Employee directory</div>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-label">Attendance</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Attendance summary</div>
+    </article>
+
+    <article class="stat-card">
+        <div class="stat-label">Pending Leave Requests</div>
+        <div class="stat-value">—</div>
+        <div class="stat-note">Leave management</div>
+    </article>
+</section>
+
+<div class="section-heading">
+    <h2>HR workspace</h2>
+    <span>Quick access</span>
+</div>
+
+<section class="content-grid">
+    <article class="content-card" id="employees">
+        <h2>Employee Directory</h2>
+        <p>Access employee profiles and workforce information.</p>
+        <a class="action-link" href="#employees">Employee directory →</a>
+    </article>
+
+    <article class="content-card" id="attendance">
+        <h2>Attendance Management</h2>
+        <p>Review attendance records and attendance summaries.</p>
+        <a class="action-link" href="#attendance">Attendance tools →</a>
+    </article>
+
+    <article class="content-card" id="leave-requests">
+        <h2>Leave Requests</h2>
+        <p>Review employee leave requests and their approval status.</p>
+        <a class="action-link" href="#leave-requests">Leave management →</a>
+    </article>
+
+    <article class="content-card" id="payroll">
+        <h2>Payroll</h2>
+        <p>Access payroll-related HR tools and information.</p>
+        <a class="action-link" href="#payroll">Payroll tools →</a>
+    </article>
+
+    <article class="content-card" id="reports">
+        <h2>HR Reports</h2>
+        <p>Review HR summaries and workforce reports.</p>
+        <a class="action-link" href="#reports">View reports →</a>
+    </article>
+</section>
+{% endblock %}
